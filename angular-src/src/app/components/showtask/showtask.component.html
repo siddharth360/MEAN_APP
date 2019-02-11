@@ -1,0 +1,34 @@
+<div class="container">
+    <br>
+    <br>
+    <h2>
+      Show Task
+    </h2>
+    <br>
+    <br>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <td>TaskId</td>
+      <td>TaskName</td>
+      <td>TaskClientName</td>
+      <td>TaskDescription</td>
+      <td width="250" align="center">Action</td>
+    </tr>
+    </thead>
+    <tbody>
+     <tr >
+      <td>taskId</td>
+      <td>taskName</td>
+      <td>taskClientName</td>
+      <td>taskDesc</td>
+      <td width="250"> 
+        <a class="btn btn-info" [routerLink]="['/addtask']">Detail</a> 
+        <a class="btn btn-primary" [routerLink]="['/addtask']">Edit</a>
+        <a class="btn btn-danger" [routerLink]="['/addtask']">Delete</a>
+      </td>
+     </tr>
+    </tbody>
+  </table>
+  </div>
+  
