@@ -7,10 +7,12 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   user: any;
+  task: any;
+  isDev;
 
   constructor(private http: Http) {
-      //this.isDev = true;  // Change to false before deployment
-      }
+    this.isDev = false;  // Change to false before deployment
+  }
 
   registerUser(user) {
     let headers = new Headers();
@@ -46,6 +48,13 @@ export class AuthService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/addtask', task, {headers: headers})
+      .map(res => res.json());
+  }
+
+  getTask() {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/showtask', {headers: headers})
       .map(res => res.json());
   }
 

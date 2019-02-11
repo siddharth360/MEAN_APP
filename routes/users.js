@@ -69,7 +69,7 @@ router.post('/addtask', (req, res, next) => {
     taskid: req.body.taskid,
     taskname: req.body.taskname,
     taskdescription: req.body.taskdescription,
-    taskhandler: req.body.handler,
+    taskhandler: req.body.taskhandler,
     taskclientname: req.body.taskclientname
   });
 
@@ -79,6 +79,39 @@ router.post('/addtask', (req, res, next) => {
     } else {
       res.json({success: true, msg: 'Task added'});
     }
+  });
+});
+
+router.get('/showtask', (req, res) => {
+  Task.getTask(function(err,tasks){
+    if(err) throw err;
+    res.json(tasks);
+  });
+});
+
+//UPDATE Task
+router.put('/updatetask/:id', function(req, res, next){
+  Task.findById(req.params._id, function (err, task) {
+      if (!task) {
+          console.log('error', 'No task found');
+          return res.redirect('/updatetask/:id');
+      }
+      console.log('task found');
+      var taskid = req.body.taskid;
+      var taskname = req.body.taskname;
+      var taskhandler= req.body.taskhandler;
+      var taskclientname = req.body.taskclientname;
+      var taskdescription=req.body.taskdescription;
+
+      task.taskid = taskid;
+      task.taskname = taskname;
+      task.taskhandler= taskhandler;
+      task.taskclientname = taskclientname;
+      task.taskdescription=taskdescription;
+
+      task.save();
+      console.log("updated Task");
+      res.redirect('/updateTask/:id');
   });
 });
 

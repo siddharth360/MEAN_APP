@@ -27,7 +27,11 @@ const TaskSchema = mongoose.Schema ({
 const Task = module.exports = mongoose.model('Task', TaskSchema);
 
 module.exports.addTask = function(newTask, callback) {
-    newTask.save(callback);
+  newTask.save(callback);
+}
+
+module.exports.getTask = function(callback){
+  Task.find(callback);
 }
 
 
