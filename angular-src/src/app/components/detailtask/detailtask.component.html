@@ -1,0 +1,31 @@
+<div class="container">
+
+  
+<br>
+<br>
+
+<div *ngIf="task">
+  <h2>
+    {{task[0].taskname}}
+  </h2>
+
+<ul class="list-group">
+    <!-- <li class="list-group-item">Name : {{task.taskId}}</li> -->
+    
+    <li class="list-group-item">task Id:{{task[0].taskid}}</li>
+    <li class="list-group-item">Task Name : {{task[0].taskname}}</li>
+    <li class="list-group-item">Task Client Name : {{task[0].taskclientname}}</li>
+    <li class="list-group-item">Task Handler Name : {{task[0].taskhandler}}</li>
+    <li class="list-group-item">Task description: {{task[0].taskdescription}}</li>
+</ul>
+</div>
+<br>
+<button class="btn btn-dark mr-3"
+  style="width:80px;"
+  type="button"
+  title="Cancel your edits"
+  [routerLink]="['/showtask']"
+>
+  Go Back
+</button>
+</div>

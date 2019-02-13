@@ -6,7 +6,7 @@ const config = require('../config/database');
 const User = require('../models/user');
 const Task = require('../models/task');
 
-// Register
+// Register Route
 router.post('/register', (req, res, next) => {
   let newUser = new User ({
     name: req.body.name,
@@ -24,7 +24,7 @@ router.post('/register', (req, res, next) => {
   });
 });
 
-// Authenticate
+// Authenticate Route
 router.post('/authenticate', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -58,12 +58,13 @@ router.post('/authenticate', (req, res, next) => {
   });
 });
 
-// Profile
+// Profile Route
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });
 
-// Addtask
+// ================================================================================
+// Addtask Route
 router.post('/addtask', (req, res, next) => {
   let newTask = new Task ({
     taskid: req.body.taskid,
@@ -72,7 +73,6 @@ router.post('/addtask', (req, res, next) => {
     taskhandler: req.body.taskhandler,
     taskclientname: req.body.taskclientname
   });
-
   Task.addTask(newTask, (err, task) => {
     if(err) {
       res.json({success: false, msg: 'Failed to add task'});
@@ -82,6 +82,7 @@ router.post('/addtask', (req, res, next) => {
   });
 });
 
+//Showtask Route
 router.get('/showtask', (req, res) => {
   Task.getTask(function(err,tasks){
     if(err) throw err;
@@ -89,29 +90,42 @@ router.get('/showtask', (req, res) => {
   });
 });
 
-//UPDATE Task
-router.put('/updatetask/:id', function(req, res, next){
-  Task.findById(req.params._id, function (err, task) {
-      if (!task) {
-          console.log('error', 'No task found');
-          return res.redirect('/updatetask/:id');
-      }
-      console.log('task found');
-      var taskid = req.body.taskid;
-      var taskname = req.body.taskname;
-      var taskhandler= req.body.taskhandler;
-      var taskclientname = req.body.taskclientname;
-      var taskdescription=req.body.taskdescription;
+//Detailtask Route
+router.get('/find/:_id', function (req, res) {
+  Task.find({ _id: req.params._id }, function (err, tasks) {
+    if(err) {
+      console.log(err);
+    }
+    else {
+      return res.json(tasks);
+    }
+  });
+});
 
-      task.taskid = taskid;
-      task.taskname = taskname;
-      task.taskhandler= taskhandler;
-      task.taskclientname = taskclientname;
-      task.taskdescription=taskdescription;
+//Updatetask Route
+router.put('/:_id', function(req, res){
+  var update = {
+    taskid: req.body.taskid,
+    taskname:req.body.taskname,
+    taskclientname:req.body.taskclientname,
+    taskhandler:req.body.taskhandler,
+    taskdescription:req.body.taskdescription
+  }
+  Task.updateTask(req.params._id,update,function(err,task){
+    if(err) throw err;
+    res.json(task);
+  });
+});
 
-      task.save();
-      console.log("updated Task");
-      res.redirect('/updateTask/:id');
+//Deletetask Route
+router.delete("/:id", function (req, res) {
+  Task.findByIdAndRemove(req.params.id, function (err) {
+    if (err) {
+      console.log("error");
+    } else {
+      console.log("Task deleted");
+      return res.json({ success: true, msg: 'refresh' });
+    }
   });
 });
 

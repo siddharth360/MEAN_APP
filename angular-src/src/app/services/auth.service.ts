@@ -44,6 +44,21 @@ export class AuthService {
     this.user = user;
   }
 
+  loadToken() {
+    const token = localStorage.getItem('id_token');
+    this.authToken = token;
+  }
+
+  loggedIn() {
+    return tokenNotExpired('id_token');
+  }
+
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+  }
+
   addTask(task) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
@@ -58,18 +73,26 @@ export class AuthService {
       .map(res => res.json());
   }
 
-  loadToken() {
-    const token = localStorage.getItem('id_token');
-    this.authToken = token;
+  updateTask(id, info){
+    let headers = new Headers();
+    console.log("update task auth service " +  JSON.stringify(info));
+    var infoo = info[0];
+    return this.http.put('http://localhost:3000/users/'+id, infoo,{headers: headers})
+        .map(res => res.json());
   }
+  
+  deletetask(task_id)
+  {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.delete('http://localhost:3000/users/' +task_id,{headers: headers})
+     .map(res => res.json());
+  } 
 
-  loggedIn() {
-    return tokenNotExpired('id_token');
-  }
-
-  logout() {
-    this.authToken = null;
-    this.user = null;
-    localStorage.clear();
+  detailtask(task_id) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/find/' +task_id, {headers: headers})
+      .map(res => res.json());
   }
 }

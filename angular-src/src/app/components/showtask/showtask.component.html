@@ -1,34 +1,48 @@
 <div class="container">
-    <br>
-    <br>
-    <h2>
-      Show Task
-    </h2>
-    <br>
-    <br>
+  <br>
+  <br>
+  <h2>
+    Show Task
+  </h2>
+  <br>
+  <br>
   <table class="table table-bordered">
     <thead>
-    <tr>
-      <td>taskid</td>
-      <td>taskname</td>
-      <td>taskclientname</td>
-      <td>taskdescription</td>
-      <td width="250" align="center">Action</td>
-    </tr>
+      <tr>
+        <td>Task Id</td>
+        <td>Task Name</td>
+        <td>Task ClientName</td>
+        <td>Task Description</td>
+        <td width="250" align="center">Action</td>
+      </tr>
     </thead>
     <tbody>
-     <tr *ngFor="let task of tasks">
-      <td>{{task.taskid}}</td>
-      <td>{{task.taskname}}</td>
-      <td>{{task.taskclientname}}</td>
-      <td>{{task.taskdescription}}</td>
-      <td width="250"> 
-        <a class="btn btn-info" [routerLink]="['/addtask']">Detail</a> 
-        <a class="btn btn-primary" [routerLink]="['/addtask']">Edit</a>
-        <a class="btn btn-danger" [routerLink]="['/addtask']">Delete</a>
-      </td>
-     </tr>
+      <tr *ngFor="let task of tasks">
+        <td>{{task.taskid}}</td>
+        <td>{{task.taskname}}</td>
+        <td>{{task.taskclientname}}</td>
+        <td>{{task.taskdescription}}</td>
+        <td width="250"> 
+          <a class="btn btn-info" routerLink="/detailtask/{{task._id}}">Detail</a> 
+          <a class="btn btn-primary" routerLink="/edittask/{{task._id}}">Edit</a>
+          <a class="btn btn-danger" routerLink="/showtask" (click)=" ondeleteClick(task._id)">Delete</a>
+        </td>
+      </tr>
     </tbody>
   </table>
-  </div>
+  <button class="btn btn-primary mr-3"
+    style="width:80px;"
+    type="button"
+    [routerLink]="['/addtask']"
+  >
+    Addtask
+  </button>
+  <button class="btn btn-dark mr-3"
+    style="width:80px;"
+    type="button"
+    [routerLink]="['/dashboard']"
+  >
+    Go Back
+  </button>
+</div>
   

@@ -34,4 +34,9 @@ module.exports.getTask = function(callback){
   Task.find(callback);
 }
 
+module.exports.updateTask = function(id, newTask, callback){
+  Task.findByIdAndUpdate(id, newTask, callback);
+}
+
+
 

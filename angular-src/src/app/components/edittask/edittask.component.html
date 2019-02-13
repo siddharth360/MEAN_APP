@@ -1,0 +1,112 @@
+<div class="card">
+  <div class="card-header">
+    <h3>Edit Task- {{task[0].taskname}}</h3> 
+  </div>
+
+  <div class="card-body">
+    <form (submit)="updateTask()">
+      <div *ngIf="task">
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label">
+            Task Id:
+          </label>
+          <div class="col-md-8">
+            <input class="form-control"
+              id="taskid"
+              type="text"
+              [(ngModel)]="task[0].taskid"
+              name="taskid"
+              placeholder="Enter Task Id"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label">
+            Task name:
+          </label>
+          <div class="col-md-8">
+            <input class="form-control"
+              id="taskname"
+              type="text"
+              [(ngModel)]="task[0].taskname"
+              name="taskname"
+              placeholder="Enter Task Name"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label">
+            Task Description:
+          </label>
+          <div class="col-md-8">
+            <input class="form-control"
+              id="taskdescription"
+              type="text"
+              [(ngModel)]="task[0].taskdescription"
+              name="taskdescription"
+              placeholder="Enter Task Description"
+            />
+          </div>
+        </div>
+        <br>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label">
+              Task Handler:
+            </label>
+            <div class="col-md-8">
+              <input class="form-control"
+                id="taskhandler"
+                type="text"
+                [(ngModel)]="task[0].taskhandler"
+                name="taskhandler"
+                placeholder="Enter Task Handler"
+              />
+            </div>
+        </div>
+        <br>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label">
+              Task Client Name:
+            </label>
+            <div class="col-md-8">
+              <input class="form-control"
+                id="taskclientname"
+                type="text"
+                [(ngModel)]="task[0].taskclientname" 
+                name="taskclientname"
+                placeholder="Enter Task Client Name"
+              />
+            </div>
+        </div>
+        <br>
+        
+        <div class="form-group row mb-2">
+          <div class="offset-md-2 col-md-4">
+            <button class="btn btn-primary mr-3"
+              style="width:80px;"
+              type="submit"  
+              value="Submit"    
+            >
+              Save
+            </button>
+            <button class="btn btn-dark mr-3"
+              style="width:80px;"
+              type="button"
+              title="Cancel your edits"
+              [routerLink]="['/showtask']"
+            >
+              Go Back
+            </button>
+          </div>
+        </div>
+        
+      </div>  
+    </form>
+  </div>
+</div>

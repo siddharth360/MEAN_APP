@@ -11,7 +11,7 @@
         </label>
         <div class="col-md-8">
           <input class="form-control"
-            id="productNameId"
+            id="taskid"
             type="text"
             [(ngModel)]="taskid"
             name="taskid"
@@ -27,7 +27,7 @@
         </label>
         <div class="col-md-8">
           <input class="form-control"
-            id="productCodeId"
+            id="taskname"
             type="text"
             [(ngModel)]="taskname"
             name="taskname"
@@ -43,7 +43,7 @@
         </label>
         <div class="col-md-8">
           <input class="form-control"
-            id="starRatingId"
+            id="taskdescription"
             type="text"
             [(ngModel)]="taskdescription"
             name="taskdescription"
@@ -59,7 +59,7 @@
           </label>
           <div class="col-md-8">
             <input class="form-control"
-              id="starRatingId"
+              id="taskhandler"
               type="text"
               [(ngModel)]="taskhandler"
               name="taskhandler"
@@ -75,7 +75,7 @@
           </label>
           <div class="col-md-8">
             <input class="form-control"
-              id="starRatingId"
+              id="taskclientname"
               type="text"
               [(ngModel)]="taskclientname"
               name="taskclientname"
@@ -94,20 +94,13 @@
           >
             Save
           </button>
-          <button class="btn btn-outline-secondary mr-3"
+          <button class="btn btn-dark mr-3"
             style="width:80px;"
             type="button"
             title="Cancel your edits"
-            [routerLink]="['/products']"
+            [routerLink]="['/dashboard']"
           >
-            Cancel
-          </button>
-          <button class="btn btn-outline-warning"
-            style="width:80px"
-            type="button"
-            title="Delete this product"
-          >
-            Delete
+            Go Back
           </button>
         </div>
       </div>

@@ -13,6 +13,9 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AddtaskComponent } from './components/addtask/addtask.component';
 import { ShowtaskComponent } from './components/showtask/showtask.component';
+import { EdittaskComponent } from './components/edittask/edittask.component';
+import { DetailtaskComponent } from './components/detailtask/detailtask.component';
+
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
@@ -26,8 +29,10 @@ const appRoutes: Routes =  [
   {path:'login', component: LoginComponent},
   {path:'dashboard', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'addtask', component: AddtaskComponent},
-  {path:'showtask', component: ShowtaskComponent}
+  {path:'addtask', component: AddtaskComponent },
+  {path:'showtask', component: ShowtaskComponent },
+  {path: 'edittask/:_id',component: EdittaskComponent },
+  {path: 'detailtask/:_id',component: DetailtaskComponent }
 ]
 
 @NgModule({
@@ -41,6 +46,8 @@ const appRoutes: Routes =  [
     ProfileComponent,
     AddtaskComponent,
     ShowtaskComponent,
+    EdittaskComponent,
+    DetailtaskComponent
   ],
   imports: [
     BrowserModule,
