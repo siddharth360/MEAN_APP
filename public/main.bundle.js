@@ -1154,13 +1154,13 @@ var AuthService = (function () {
     AuthService.prototype.registerUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/register', user, { headers: headers })
+        return this.http.post('users/register', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.authenticateUser = function (user) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/authenticate', user, { headers: headers })
+        return this.http.post('users/authenticate', user, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getProfile = function () {
@@ -1168,7 +1168,7 @@ var AuthService = (function () {
         this.loadToken();
         headers.append('Authorization', this.authToken);
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/users/profile', { headers: headers })
+        return this.http.get('users/profile', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.storeUserData = function (token, user) {
@@ -1192,32 +1192,32 @@ var AuthService = (function () {
     AuthService.prototype.addTask = function (task) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.post('http://localhost:3000/users/addtask', task, { headers: headers })
+        return this.http.post('users/addtask', task, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.getTask = function () {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/users/showtask', { headers: headers })
+        return this.http.get('users/showtask', { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.updateTask = function (id, info) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         console.log("update task auth service " + JSON.stringify(info));
         var infoo = info[0];
-        return this.http.put('http://localhost:3000/users/' + id, infoo, { headers: headers })
+        return this.http.put('users/' + id, infoo, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.deletetask = function (task_id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.delete('http://localhost:3000/users/' + task_id, { headers: headers })
+        return this.http.delete('users/' + task_id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService.prototype.detailtask = function (task_id) {
         var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
         headers.append('Content-Type', 'application/json');
-        return this.http.get('http://localhost:3000/users/find/' + task_id, { headers: headers })
+        return this.http.get('users/find/' + task_id, { headers: headers })
             .map(function (res) { return res.json(); });
     };
     AuthService = __decorate([
