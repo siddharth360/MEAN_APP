@@ -84,10 +84,28 @@ router.post('/addtask', (req, res, next) => {
 
 //Showtask Route
 router.get('/showtask', (req, res) => {
-  Task.getTask(function(err,tasks){
-    if(err) throw err;
+  let search=req.headers.authorization; 
+  if (search) {
+    Task.find({
+          "$or": [
+            { taskName: { '$regex': search, $options: 'i' } },
+            { taskClientName: { '$regex': search, $options: 'i' } },
+            { taskDesc: { '$regex': search ,$options: 'i'} }
+          ]
+        }, function (err, tasks) {
+          console.log(tasks);
+          return res.json(tasks);
+        });
+  }
+  else
+  {
+  Task.getTask(function (err, tasks) {
+    if (err) throw err;
+    console.log(tasks);
     res.json(tasks);
+    console.log("show working");
   });
+  }
 });
 
 //Detailtask Route

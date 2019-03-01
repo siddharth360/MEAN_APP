@@ -1,48 +1,51 @@
+
 <div class="container">
+
   <br>
   <br>
   <h2>
     Show Task
   </h2>
-  <br>
-  <br>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <td>Task Id</td>
-        <td>Task Name</td>
-        <td>Task ClientName</td>
-        <td>Task Description</td>
-        <td width="250" align="center">Action</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let task of tasks">
-        <td>{{task.taskid}}</td>
-        <td>{{task.taskname}}</td>
-        <td>{{task.taskclientname}}</td>
-        <td>{{task.taskdescription}}</td>
-        <td width="250"> 
-          <a class="btn btn-info" routerLink="/detailtask/{{task._id}}">Detail</a> 
-          <a class="btn btn-primary" routerLink="/edittask/{{task._id}}">Edit</a>
-          <a class="btn btn-danger" routerLink="/showtask" (click)=" ondeleteClick(task._id)">Delete</a>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="btn btn-primary mr-3"
-    style="width:80px;"
-    type="button"
-    [routerLink]="['/addtask']"
-  >
-    Addtask
-  </button>
-  <button class="btn btn-dark mr-3"
-    style="width:80px;"
-    type="button"
-    [routerLink]="['/dashboard']"
-  >
-    Go Back
-  </button>
-</div>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
+<div class="search-container">
+  <form class="example" style="margin:auto;max-width:300px" (submit)="onSearchSubmit()" >
+ 
+      <div class="input-group">
+          <input type="text" [(ngModel)]="search" name="search" placeholder="Search...">
+            <button type="submit"  type="submit" > <i class="fa fa-search"></i></button>
+      </div>
+  </form>
+</div>
+
+<br>
+  <br>
+<table class="table table-bordered">
+  <thead>
+  <tr>
+    <td>TaskId</td>
+    <td>TaskName</td>
+    <td>TaskClientName</td>
+    <td>TaskDescription</td>
+    <td width="250" align="center">Action</td>
+  </tr>
+  </thead>
+  <tbody>
+   <tr  *ngFor="let task of tasks">
+    <td>	{{task.taskid}}	 </td>
+    <td>	{{task.taskname}} </td>
+    <td>	{{task.taskclientname}} </td>
+    <td>	{{task.taskdescription}} </td>
+    <td width="250"> 
+      <a class="btn btn-info" 	routerLink="/detailtask/{{task._id}}">Detail</a> 
+      <!-- <a class="btn btn-primary"  		routerLink="/edittask/{{task._id}}">Edit</a> -->
+      <a class="btn btn-primary"  		routerLink="/edittask/{{task._id}}">Edit</a>
+      <a class="btn btn-danger" 				(click)=" ondeleteClick(task._id)" >Delete</a>
+    </td>
+   </tr>
+  </tbody>
+</table>
+ <a class="btn btn-primary"  		routerLink="/addtask/">AddTask</a>
+ <a class="btn btn-info"  		routerLink="/dashboard">Go Back</a> 
+</div>
